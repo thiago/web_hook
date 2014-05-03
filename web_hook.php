@@ -52,9 +52,6 @@
 	}
 
 
-	// Init vars
-	$foo 				= '{"repository": {"website": "", "fork": false, "name": "Shoptime - Joga Junto", "scm": "git", "owner": "trsouz", "absolute_url": "/trsouz/shoptime-joga-junto/", "slug": "shoptime-joga-junto", "is_private": true}, "truncated": false, "commits": [{"node": "15f90af4eef1", "files": [{"type": "modified", "file": "app/application/config/fb_ignited.php"}], "raw_author": "Thiago Rodrigues <thiagorsouz@gmail.com>", "utctimestamp": "2014-05-03 15:24:17+00:00", "author": "trsouz", "timestamp": "2014-05-03 17:24:17", "raw_node": "15f90af4eef14ed46ada4e2963538a5e99637bfc", "parents": ["abc4b0a3c5e6"], "branch": "master", "message": "alterando infos do app\n", "revision": null, "size": -1}], "canon_url": "https://bitbucket.org", "user": "trsouz"}';
-	
 	if(isset($HTTP_RAW_POST_DATA)){
 		$RAW 				= $HTTP_RAW_POST_DATA;
 		$JSON 				= json_decode($RAW);
@@ -66,8 +63,8 @@
 			$LOCAL_REPO_NAME = $JSON->repository->name;
 			$REMOTE_REPO = $JSON->repository->url;
 		}
-	}else if(isset($_POST['payload']) || $foo){
-		$RAW 				= $foo;
+	}else if(isset($_POST['payload'])){
+		$RAW 				= $_POST['payload'];
 		$JSON 				= json_decode($RAW);
 		if (isset($JSON->commits) && count($JSON->commits)){
 			$DESIRED_BRANCH     = array_shift($JSON->commits);
